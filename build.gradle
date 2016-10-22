@@ -1,0 +1,163 @@
+buildscript {
+    ext {
+        //ANDROID LIBS
+        android_support_version = "24.1.1"
+        play_services_version = "8.4.0"
+
+        // APP LIBRARIES
+        retrofit2_version = "2.0.2"
+        okhttp3_version = "3.2.0"
+        picasso_version = "2.5.2"
+        glide_version = "3.7.0"
+        dagger_version = "2.5"
+        butterknife_version = "8.0.1"
+        timber_version = "4.1.2"
+        retrolamda_version = "3.2.5"
+        rxjava_version = "1.1.10"
+        rxandroid_version = "1.1.0"
+        leak_canary_version = "1.4"
+        tesseract_version = "3.2.1"
+        rx_preferences_version = "1.0.2"
+        realm_version = "1.1.1"
+        calligraphy_version = "2.2.0"
+        conductor_version = "2.0.3"
+        icepick_version = "3.2.0"
+        dart_version = "2.0.1"
+
+        // TESTING
+        junit_version = "4.12"
+        mockito_version = "2.0.52-beta"
+        robolectric_version = "3.1.2"
+        espresso_version = "2.2.2"
+        espresso_runner_version = "0.5"
+        uiautomator_version = "2.1.2"
+        hamcrest_version = "1.3"
+        unmock_version = "0.5.0"
+        spek_version = "1.0.89"
+        junit_platform_version = "1.0.0-M2"
+        powermock_version = "1.6.5"
+
+        //KOTLIN
+        kotlin_version = "1.0.4"
+        anko_version = "0.9"
+
+        // INFRASTRUCTURE
+    }
+
+    ext.libraries = [//APP LIBRARIES
+                     android_support_v4   : "com.android.support:support-v4:$android_support_version",
+                     android_support_v13  : "com.android.support:support-v13:$android_support_version",
+                     android_appcompat    : "com.android.support:appcompat-v7:$android_support_version",
+                     design_support       : "com.android.support:design:$android_support_version",
+                     support_annotations  : "com.android.support:support-annotations:$android_support_version",
+                     play_gcm             : "com.google.android.gms:play-services-gcm:$play_services_version",
+                     play_wear            : "com.google.android.gms:play-services-wearable:$play_services_version",
+                     play_drive           : "com.google.android.gms:play-services-drive:$play_services_version",
+                     card_view            : "com.android.support:cardview-v7:$android_support_version",
+                     recycler_view        : "com.android.support:recyclerview-v7:$android_support_version",
+                     retrofit2            : "com.squareup.retrofit2:retrofit:$retrofit2_version",
+                     retrofit2_gson       : "com.squareup.retrofit2:converter-gson:$retrofit2_version",
+                     retrofit2_rx         : "com.squareup.retrofit2:adapter-rxjava:$retrofit2_version",
+                     picasso              : "com.squareup.picasso:picasso:$picasso_version",
+                     glide                : "com.github.bumptech.glide:glide:$glide_version",
+                     dagger               : "com.google.dagger:dagger:$dagger_version",
+                     dagger_compiler      : "com.google.dagger:dagger-compiler:$dagger_version",
+                     okhttp3              : "com.squareup.okhttp3:okhttp:$okhttp3_version",
+                     okhttp3_logger       : "com.squareup.okhttp3:logging-interceptor:$okhttp3_version",
+                     butterknife          : "com.jakewharton:butterknife:$butterknife_version",
+                     butterknife_compiler : "com.jakewharton:butterknife-compiler:$butterknife_version",
+                     timber               : "com.jakewharton.timber:timber:$timber_version",
+                     kotlin               : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+                     rxjava               : "io.reactivex:rxjava:$rxjava_version",
+                     rxandroid            : "io.reactivex:rxandroid:$rxandroid_version",
+                     leak_canary          : "com.squareup.leakcanary:leakcanary-android:$leak_canary_version",
+                     leak_canary_release  : "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version",
+                     tesseract            : "net.sourceforge.tess4j:tess4j:$tesseract_version",
+                     rx_preferences       : "com.f2prateek.rx.preferences:rx-preferences:$rx_preferences_version",
+                     anko                 : "org.jetbrains.anko:anko-sdk15:$anko_version",
+                     anko_support_v4      : "org.jetbrains.anko:anko-support-v4:$anko_version",
+                     anko_appcompat       : "org.jetbrains.anko:anko-appcompat-v7:$anko_version",
+                     anko_design          : "org.jetbrains.anko:anko-design:$anko_version",
+                     anko_recycler_view   : "org.jetbrains.anko:anko-recyclerview-v7:$anko_version",
+                     powermock_api        : "org.powermock:powermock-api-mockito:$powermock_version",
+                     powermock_agent      : "org.powermock:powermock-module-junit4-rule-agent:$powermock_version",
+                     powermock_rule       : "org.powermock:powermock-module-junit4-rule:$powermock_version",
+                     powermock_junit      : "org.powermock:powermock-module-junit4:$powermock_version",
+                     calligraphy          : "uk.co.chrisjenx:calligraphy:$calligraphy_version",
+                     conductor            :
+                             dependencies.create("com.bluelinelabs:conductor:$conductor_version") {
+                                 exclude group: 'com.google.code.findbugs', module: 'jsr305'
+                             },
+                     conductor_support    :
+                             dependencies.create("com.bluelinelabs:conductor-support:$conductor_version") {
+                                 exclude group: 'com.google.code.findbugs', module: 'jsr305'
+                             },
+                     conductor_rxlifecycle:
+                             dependencies.create("com.bluelinelabs:conductor-rxlifecycle:$conductor_version") {
+                                 exclude group: 'com.google.code.findbugs', module: 'jsr305'
+                             },
+                     icepick              : "frankiesardo:icepick:$icepick_version",
+                     icepick_processor    : "frankiesardo:icepick-processor:$icepick_version",
+                     dart                 : "com.f2prateek.dart:dart:$dart_version",
+                     dart_processor       : "com.f2prateek.dart:dart-processor:$dart_version",
+
+                     // TESTING
+                     junit                : "junit:junit:$junit_version",
+                     mockito              : "org.mockito:mockito-core:$mockito_version",
+                     robolectric          : "org.robolectric:robolectric:$robolectric_version",
+                     kotlin_test          : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
+                     espresso             : "com.android.support.test.espresso:espresso-core:$espresso_version",
+                     espresso_runner      : "com.android.support.test:runner:$espresso_runner_version",
+                     espresso_intents     : "com.android.support.test.espresso:espresso-intents:$espresso_version",
+                     ui_automator         : "com.android.support.test.uiautomator:uiautomator-v18:$uiautomator_version",
+                     hamcrest             : "org.hamcrest:hamcrest-all:$hamcrest_version",
+                     spek                 : "org.jetbrains.spek:spek-api:$spek_version",
+                     spek_runner          : "org.jetbrains.spek:spek-junit-platform-engine:$spek_version",
+                     junit_platform       : "org.junit.platform:junit-platform-runner:$junit_platform_version"
+
+                     // INFRASTRUCTURE
+    ]
+
+    ext.versions = [
+            compile_sdk: 23,
+            build_tools: "24.0.1",
+            min_sdk    : 19,
+            target_sdk : 23
+    ]
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url "https://maven.fabric.io/public" }
+        maven { url "http://repository.jetbrains.com/all" }
+        maven { url "https://clojars.org/repo/" }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath "me.tatarka:gradle-retrolambda:$retrolamda_version"
+        classpath "de.mobilej.unmock:UnMockPlugin:$unmock_version"
+        classpath 'io.fabric.tools:gradle:1.15.2'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.fabric.io/public" }
+        maven { url "http://repository.jetbrains.com/all" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url "https://clojars.org/repo/" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

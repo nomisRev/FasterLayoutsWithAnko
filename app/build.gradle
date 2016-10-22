@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+apply plugin: 'de.mobilej.unmock'
+apply plugin: 'kotlin-android'
+
+def versionMajor = 0
+def versionMinor = 9
+def versionPatch = 0
+def versionBuild = 0
+
+def buildTime = new Date().format("dd-MM-yyyy'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
+
+android {
+    compileSdkVersion versions.compile_sdk
+    buildToolsVersion versions.build_tools
+
+    defaultConfig {
+        applicationId "be.vergauwen.simon.fasterankolayouts"
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
+
+        versionCode buildVersionCode(versionMajor, versionMinor, versionPatch, versionBuild)
+        versionName buildVersionName(versionMajor, versionMinor, versionPatch)
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+    lintOptions {
+        abortOnError true
+    }
+}
+
+kapt {
+    generateStubs true
+}
+
+unMock {
+
+}
+dependencies {
+    debugCompile(libraries.leak_canary)
+    releaseCompile(libraries.leak_canary_release)
+
+    testCompile(libraries.junit,
+            libraries.kotlin,
+            libraries.kotlin_test,
+            libraries.robolectric,
+            libraries.leak_canary_release,
+            libraries.spek,
+            libraries.spek_runner,
+            libraries.powermock_api,
+            libraries.powermock_agent,
+            libraries.powermock_rule,
+            libraries.powermock_junit,
+            libraries.junit_platform,
+            libraries.hamcrest)
+
+    androidTestCompile(libraries.espresso,
+            libraries.espresso_runner,
+            libraries.espresso_intents,
+            libraries.ui_automator,
+            libraries.kotlin,
+            libraries.kotlin_test,
+            libraries.support_annotations,
+            libraries.mockito,
+            libraries.leak_canary_release)
+
+    compile(libraries.android_appcompat,
+            libraries.design_support,
+            libraries.dagger,
+            libraries.rxjava,
+            libraries.rxandroid,
+            libraries.timber,
+            libraries.kotlin,
+            libraries.anko,
+            libraries.anko_support_v4,
+            libraries.anko_appcompat,
+            libraries.anko_design,
+            libraries.anko_recycler_view,
+            libraries.calligraphy,
+            libraries.rx_preferences,
+            libraries.conductor,
+            libraries.conductor_support,
+            libraries.conductor_rxlifecycle,
+            libraries.icepick)
+
+    provided(libraries.icepick_processor)
+
+    kapt(libraries.dagger_compiler)
+    compile 'com.android.support:support-v4:23.4.0'
+}
+
+def buildVersionName(versionMajor, versionMinor, versionPatch) {
+    return "${versionMajor}.${versionMinor}.${versionPatch}"
+}
+
+def buildVersionCode(versionMajor, versionMinor, versionPatch, versionBuild) {
+    return versionMajor * 1000 + versionMinor * 100 + versionPatch * 10 + versionBuild
+}
