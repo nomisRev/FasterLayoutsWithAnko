@@ -16,27 +16,27 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 class MainLayout : ViewBinder<MainActivity> {
 
-    override fun MainActivity.bind(): View =
-            UI {
+    override fun bind(mainActivity: MainActivity): View =
+            mainActivity.UI {
                 coordinatorLayout {
                     toolbar {
                         setSupportActionBar(this)
                     }.lparams(width = matchParent, height = actionBarSize())
 
-                    container = linearLayout {
+                    mainActivity.container = linearLayout {
 
                         configuration(orientation = Orientation.PORTRAIT) {
-                            recycView = recyclerView {
+                            mainActivity.recycView = recyclerView {
                                 init()
                             }.lparams(width = matchParent, height = matchParent)
                         }
 
                         configuration(orientation = Orientation.LANDSCAPE) {
-                            recycView = recyclerView {
+                            mainActivity.recycView = recyclerView {
                                 init()
                             }.lparams(width = dip(275), height = matchParent)
 
-                            detailContainer = frameLayout {
+                            mainActivity.detailContainer = frameLayout {
                                 id = R.id.item_detail_container
                             }.lparams(width = matchParent, height = matchParent)
                         }
@@ -44,10 +44,10 @@ class MainLayout : ViewBinder<MainActivity> {
                 }
             }.view
 
-    override fun MainActivity.unbind() {
-        container = null
-        recycView = null
-        detailContainer = null
+    override fun unbind(mainActivity: MainActivity) {
+        mainActivity.container = null
+        mainActivity.recycView = null
+        mainActivity.detailContainer = null
     }
 
     private fun RecyclerView.init() {
