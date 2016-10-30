@@ -4,6 +4,6 @@ import android.view.View
 
 
 interface ViewBinder<in T> {
-    fun T.bind() : View
-    fun T.unbind()
+    fun bind(t: T) : View
+    fun unbind(t: T)
 }
