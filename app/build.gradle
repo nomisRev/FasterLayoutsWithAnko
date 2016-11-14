@@ -98,7 +98,6 @@ dependencies {
     provided(libraries.icepick_processor)
 
     kapt(libraries.dagger_compiler)
-    compile 'com.android.support:support-v4:23.4.0'
 }
 
 def buildVersionName(versionMajor, versionMinor, versionPatch) {

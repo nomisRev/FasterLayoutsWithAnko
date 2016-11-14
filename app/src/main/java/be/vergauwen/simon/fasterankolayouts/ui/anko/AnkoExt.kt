@@ -12,6 +12,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import org.jetbrains.anko.wrapContent
 
 fun View.drawable(@DrawableRes resource: Int): Drawable = ContextCompat.getDrawable(context, resource)
 
@@ -52,4 +53,13 @@ fun <T : View> T.getAppUseableScreenSize(): Point {
     val size = Point()
     display.getSize(size)
     return size
+}
+
+fun <T : android.view.View> T.collapseLayoutParams(
+        width: kotlin.Int = wrapContent, height: kotlin.Int = wrapContent,
+        init: android.support.design.widget.CollapsingToolbarLayout.LayoutParams.() -> kotlin.Unit = { }): T {
+    val layoutParams = android.support.design.widget.CollapsingToolbarLayout.LayoutParams(width, height)
+    layoutParams.init()
+    this@collapseLayoutParams.layoutParams = layoutParams
+    return this
 }

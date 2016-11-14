@@ -5,16 +5,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:textViewStyle">@style/AppTheme.TextView</item>
-        <item name="toolbarStyle">@style/AppTheme.PopupOverlay</item>
+        <!--<item name="android:textViewStyle">@style/AppTheme.TextView</item>-->
+        <!--<item name="toolbarStyle">@style/AppTheme.PopupOverlay</item>-->
     </style>
 
-    <style name="AppTheme.TextView" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">20sp</item>
-    </style>
+    <!--<style name="AppTheme.TextView" parent="@android:style/Widget.TextView">-->
+    <!--<item name="android:textSize">20sp</item>-->
+    <!--</style>-->
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-        <item name="titleTextColor">@android:color/white</item>
-    </style>
-
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 </resources>

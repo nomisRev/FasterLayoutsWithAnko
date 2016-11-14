@@ -10,15 +10,15 @@ import org.jetbrains.anko.textView
 
 class DetailFragmentLayout : ViewBinder<ItemDetailFragment> {
 
-    override fun ItemDetailFragment.bind(): View =
-            activity.UI {
-                textView = textView {
+    override fun bind(t: ItemDetailFragment): View =
+            t.activity.UI {
+                t.textView = textView {
                     padding = dip(16)
                     setTextIsSelectable(true)
                 }
             }.view
 
-    override fun ItemDetailFragment.unbind() {
-        textView = null
+    override fun unbind(t: ItemDetailFragment) {
+        t.textView = null
     }
 }

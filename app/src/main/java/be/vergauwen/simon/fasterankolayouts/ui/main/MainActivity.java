@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +17,6 @@ import be.vergauwen.simon.fasterankolayouts.ui.util.RecyclerViewExtKt;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout container;
     RecyclerView recycView;
     FrameLayout detailContainer;
 
