@@ -30,8 +30,8 @@ class MainLayout : ViewBinder<MainActivity> {
                         }.lparams(width = matchParent, height = actionBarSize())
                     }.lparams(width = matchParent)
 
+                    linearLayout {
 
-                    frameLayout {
                         configuration(orientation = Orientation.PORTRAIT) {
                             mainActivity.recycView = recyclerView {
                                 init()
@@ -48,16 +48,25 @@ class MainLayout : ViewBinder<MainActivity> {
                                     id = R.id.item_detail_container
                                 }.lparams(width = matchParent, height = matchParent)
                             }
+                            mainActivity.recycView = recyclerView {
+                                init()
+                            }.lparams(width = dip(275), height = matchParent)
+
+                            mainActivity.detailContainer = frameLayout {
+                                id = R.id.item_detail_container
+                            }.lparams(width = matchParent, height = matchParent)
                         }
                     }.lparams(width = matchParent, height = matchParent) {
                         behavior = AppBarLayout.ScrollingViewBehavior()
                     }
+
                 }
             }.view
 
     override fun unbind(t: MainActivity) {
         t.recycView = null
         t.detailContainer = null
+
     }
 
     private fun RecyclerView.init() {

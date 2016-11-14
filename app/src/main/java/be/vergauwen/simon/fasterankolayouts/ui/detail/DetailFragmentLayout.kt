@@ -18,7 +18,7 @@ class DetailFragmentLayout : ViewBinder<ItemDetailFragment> {
                 }
             }.view
 
-    override fun unbind(t: ItemDetailFragment) {
-        t.textView = null
+    override fun unbind(itemDetailFragment: ItemDetailFragment) {
+        itemDetailFragment.textView = null
     }
 }
